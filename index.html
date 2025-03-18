@@ -60,11 +60,11 @@
 <body>
     <h1>Etch-a-Sketch Digital</h1>
     <div class="controls">
-        <button onclick="changeSize()">Tamaño de la Cuadrícula</button>
-        <button onclick="clearGrid()">Limpiar</button>
-        <button id="colorMode" class="active" onclick="setMode('color')">Negro</button>
-        <button id="randomMode" onclick="setMode('random')">Color Aleatorio</button>
-        <button id="darkenMode" onclick="setMode('darken')">Oscurecer</button>
+        <button onclick="changeSize()">Grid Size</button>
+        <button onclick="clearGrid()">Clear</button>
+        <button id="colorMode" class="active" onclick="setMode('color')">Black</button>
+        <button id="randomMode" onclick="setMode('random')">Random Color</button>
+        <button id="darkenMode" onclick="setMode('darken')">Darken</button>
     </div>
     <div class="container" id="gridContainer"></div>
 
@@ -92,7 +92,8 @@
 
         const modeActions = {
             color(e) {
-                e.target.style.backgroundColor = currentColor;
+                e.target.style.backgroundColor = '#000000';
+                e.target.dataset.darkness = 10;
             },
             random(e) {
              e.target.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
@@ -111,13 +112,13 @@
         }
 
         function changeSize() {
-            let newSize = prompt('Ingrese el número de cuadros por lado (1-100):', 16);
+            let newSize = prompt('Enter the number of squares per side (1-100):', 16);
             newSize = parseInt(newSize);
             
             if (newSize && newSize > 0 && newSize <= 100) {
                 createGrid(newSize);
             } else {
-                alert('Por favor ingrese un número válido entre 1 y 100');
+                alert('Please enter a valid number between 1 and 100');
             }
         }
 
